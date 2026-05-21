@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Plano ECC Barcelona</title>
+
+<style>
+
+body{
+    margin:0;
+    background:#ececec;
+    font-family:Arial;
+}
+
+/* CONTENEDOR */
+
+.container{
+
+    position:relative;
+
+    width:1200px;
+
+    margin:20px auto;
+}
+
+/* IMAGEN */
+
+.plano{
+
+    width:1200px;
+
+    display:block;
+}
+
+/* HOTSPOTS INVISIBLES */
+
+.marker{
+
+    position:absolute;
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    background:red;
+
+    opacity:0;
+
+    z-index:999;
+
+    transform:translate(-50%,-50%);
+}
+
+/* POPUP */
+
+.popup{
+
+    position:fixed;
+
+    left:50%;
+
+    bottom:20px;
+
+    transform:translateX(-50%);
+
+    background:white;
+
+    width:90%;
+
+    max-width:420px;
+
+    border-radius:20px;
+
+    padding:20px;
+
+    box-shadow:0 0 25px rgba(0,0,0,0.35);
+
+    display:none;
+
+    z-index:99999;
+}
+
+.popup h2{
+
+    margin-top:0;
+
+    color:#003399;
+}
+
+.close{
+
+    float:right;
+
+    cursor:pointer;
+
+    font-size:24px;
+
+    font-weight:bold;
+}
+
+.info{
+
+    line-height:1.8;
+
+    margin-top:15px;
+}
+
+/* BOTONES */
+
+.btn{
+
+    display:block;
+
+    text-align:center;
+
+    padding:14px;
+
+    margin-top:12px;
+
+    border-radius:12px;
+
+    text-decoration:none;
+
+    color:white;
+
+    font-weight:bold;
+}
+
+.llamar{
+    background:#007bff;
+}
+
+.whatsapp{
+    background:#25D366;
+}
+
+.email{
+    background:#ff6600;
+}
+
+/* MOBILE */
+
+@media(max-width:1280px){
+
+    .container{
+
+        width:100%;
+        overflow-x:auto;
+    }
+
+    .plano{
+
+        width:1200px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<img src="plano.png" class="plano">
+
+<!-- ===================== -->
+<!-- HOTSPOTS FINALES -->
+<!-- ===================== -->
+
+<!-- 1 -->
+<div class="marker"
+style="left:272px; top:393px;"
+onclick="mostrar(
+'David Robles',
+'+34608049585',
+'dra-70@hotmail.es',
+'Via Julia',
+'ECC'
+)">
+</div>
+
+<!-- 2 -->
+<div class="marker"
+style="left:357px; top:479px;"
+onclick="mostrar(
+'Kevin Aguilera',
+'+34662228389',
+'k_a_r@hotmail.es',
+'Porta',
+'ECC'
+)">
+</div>
+
+<!-- 3 -->
+<div class="marker"
+style="left:476px; top:593px;"
+onclick="mostrar(
+'Valeri Saakyan',
+'+34619589406',
+'valeriimarta@gmail.com',
+'Parc Central',
+'ECC'
+)">
+</div>
+
+<!-- 4 -->
+<div class="marker"
+style="left:582px; top:511px;"
+onclick="mostrar(
+'Toni Tamargo',
+'+34655473380',
+'ynot51t@gmail.com',
+'Parc Central',
+'ECC'
+)">
+</div>
+
+<!-- 5 -->
+<div class="marker"
+style="left:561px; top:226px;"
+onclick="mostrar(
+'Edwin Javier Duarte Dubon',
+'+34677298859',
+'javierduarte.1981@gmail.com',
+'Via Julia',
+'ECC'
+)">
+</div>
+
+<!-- 6 -->
+<div class="marker"
+style="left:510px; top:178px;"
+onclick="mostrar(
+'Daniel Núñez Licona',
+'+34653402116',
+'gdnl7.dn@gmail.com',
+'Via Julia',
+'ECC'
+)">
+</div>
+
+<!-- 7 -->
+<div class="marker"
+style="left:383px; top:179px;"
+onclick="mostrar(
+'Óscar Martínez',
+'+34607242802',
+'omartinez013@gmail.com',
+'Parc Central',
+'ECC'
+)">
+</div>
+
+<!-- 8 -->
+<div class="marker"
+style="left:303px; top:329px;"
+onclick="mostrar(
+'Eric Garciolo',
+'+34648666312',
+'ericgarciolo@gmail.com',
+'Via Julia',
+'Acomodador'
+)">
+</div>
+
+<!-- 9 -->
+<div class="marker"
+style="left:385px; top:394px;"
+onclick="mostrar(
+'Luis Sangoluisa',
+'+34646309923',
+'luissangoluisa10@gmail.com',
+'Porta',
+'Acomodador'
+)">
+</div>
+
+<!-- 10 -->
+<div class="marker"
+style="left:486px; top:481px;"
+onclick="mostrar(
+'Aarón Cerrato',
+'+34617200204',
+'aaroncerratojw@gmail.com',
+'Vilapiscina',
+'Acomodador'
+)">
+</div>
+
+<!-- 11 -->
+<div class="marker"
+style="left:370px; top:310px;"
+onclick="mostrar(
+'Isaac Navarro',
+'+34645507075',
+'',
+'Vilapiscina',
+'Acomodador'
+)">
+</div>
+
+<!-- 12 -->
+<div class="marker"
+style="left:464px; top:389px;"
+onclick="mostrar(
+'Acomodadores',
+'',
+'',
+'',
+'Acomodador'
+)">
+</div>
+
+<!-- 13 -->
+<div class="marker"
+style="left:539px; top:629px;"
+onclick="mostrar(
+'Samuele Cammarata',
+'+34631517739',
+'samuelecammarata@gmail.com',
+'Vallvidriera',
+'Responsable'
+)">
+</div>
+
+<!-- 14 -->
+<div class="marker"
+style="left:592px; top:581px;"
+onclick="mostrar(
+'Gumersindo Carrillo',
+'+34661142406',
+'camba7119@hotmail.com',
+'Porta',
+'Responsable'
+)">
+</div>
+
+<!-- 15 -->
+<div class="marker"
+style="left:649px; top:525px;"
+onclick="mostrar(
+'Cristian Walpole',
+'+34640924943',
+'cristianwal@hotmail.com',
+'Via Julia',
+'Responsable'
+)">
+</div>
+
+</div>
+
+<!-- ===================== -->
+<!-- POPUP -->
+<!-- ===================== -->
+
+<div class="popup" id="popup">
+
+<span class="close" onclick="cerrar()">
+✖
+</span>
+
+<h2 id="nombre"></h2>
+
+<div class="info">
+
+<div id="rol"></div>
+
+<div id="congregacion"></div>
+
+<div id="telefonoTexto"></div>
+
+<div id="emailTexto"></div>
+
+</div>
+
+<a id="llamar" class="btn llamar">
+📞 Llamar
+</a>
+
+<a id="whatsapp" class="btn whatsapp" target="_blank">
+WhatsApp
+</a>
+
+<a id="emailBtn" class="btn email">
+✉ Email
+</a>
+
+</div>
+
+<script>
+
+function mostrar(nombre,tel,email,congregacion,rol){
+
+document.getElementById("popup").style.display="block";
+
+document.getElementById("nombre").innerHTML=nombre;
+
+document.getElementById("rol").innerHTML=
+"<b>Rol:</b> "+rol;
+
+document.getElementById("congregacion").innerHTML=
+"<b>Congregación:</b> "+congregacion;
+
+document.getElementById("telefonoTexto").innerHTML=
+"<b>Teléfono:</b> "+tel;
+
+document.getElementById("emailTexto").innerHTML=
+"<b>Email:</b> "+email;
+
+document.getElementById("llamar").href=
+"tel:"+tel;
+
+document.getElementById("whatsapp").href=
+"https://wa.me/"+tel.replace("+","");
+
+document.getElementById("emailBtn").href=
+"mailto:"+email;
+}
+
+function cerrar(){
+
+document.getElementById("popup").style.display="none";
+}
+
+</script>
+
+</body>
+</html>
