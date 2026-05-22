@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
+
 <meta charset="UTF-8">
 
 <meta name="viewport"
@@ -14,7 +14,7 @@ content="width=device-width, initial-scale=1.0">
 body{
     margin:0;
     background:#ececec;
-    font-family:Arial;
+    font-family:Arial,sans-serif;
 }
 
 .container{
@@ -29,29 +29,30 @@ body{
     display:block;
 }
 
+/* SVG */
+
+svg{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+}
+
 /* HOTSPOTS */
 
-.marker{
-    position:absolute;
-    width:2%;
-    aspect-ratio:1;
-    border-radius:50%;
-    transform:translate(-50%,-50%);
-    cursor:pointer;
-    z-index:20;
+.hotspot{
 
-    background:red;
+    fill:red;
     opacity:0;
+
+    cursor:pointer;
+
+    transition:.2s;
 }
 
-/* MOBILE */
-
-@media(max-width:768px){
-
-.marker{
-    width:4%;
-}
-
+.hotspot:hover{
+    opacity:.25;
 }
 
 /* POPUP */
@@ -59,24 +60,26 @@ body{
 .popup{
 
     position:fixed;
+
     left:50%;
     bottom:10px;
+
     transform:translateX(-50%);
+
+    width:92%;
+    max-width:430px;
 
     background:white;
 
-    width:90%;
-    max-width:420px;
+    border-radius:22px;
 
-    border-radius:20px;
-
-    padding:20px;
-
-    display:none;
+    padding:22px;
 
     z-index:9999;
 
-    box-shadow:0 0 25px rgba(0,0,0,.35);
+    display:none;
+
+    box-shadow:0 0 30px rgba(0,0,0,.35);
 }
 
 .popup h2{
@@ -85,15 +88,19 @@ body{
 }
 
 .close{
-    float:right;
-    cursor:pointer;
+
+    position:absolute;
+    top:15px;
+    right:20px;
+
     font-size:30px;
+    cursor:pointer;
     font-weight:bold;
 }
 
 .info{
     line-height:1.8;
-    margin-top:10px;
+    margin-top:15px;
 }
 
 /* BOTONES */
@@ -101,31 +108,34 @@ body{
 .btn{
 
     display:block;
+
     text-align:center;
-
-    padding:14px;
-
-    margin-top:12px;
-
-    border-radius:12px;
-
-    color:white;
 
     text-decoration:none;
 
+    color:white;
+
     font-weight:bold;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    margin-top:14px;
+
+    font-size:22px;
 }
 
 .llamar{
-    background:#0d6efd;
+    background:#1677ff;
 }
 
 .whatsapp{
-    background:#25D366;
+    background:#28d146;
 }
 
 .email{
-    background:#ff6b00;
+    background:#ff7300;
 }
 
 </style>
@@ -136,20 +146,25 @@ body{
 
 <div class="container">
 
-<img src="plano.png" class="plano">
-
-<!-- ===================== -->
-<!-- HOTSPOTS -->
-<!-- ===================== -->
+<img src="plano.png"
+class="plano">
 
 <!--
-LAS COORDENADAS YA ESTÁN
-CONVERTIDAS A %
+IMPORTANTE:
+EL viewBox DEBE COINCIDIR
+CON EL TAMAÑO REAL
+DE LA IMAGEN
 -->
 
+<svg viewBox="0 0 1400 1000"
+preserveAspectRatio="xMidYMid meet">
+
 <!-- 1 -->
-<div class="marker"
-style="left:19.4%; top:36.6%;"
+<circle
+class="hotspot"
+cx="272"
+cy="393"
+r="18"
 onclick="mostrar(
 'David Robles',
 '+34608049585',
@@ -157,11 +172,14 @@ onclick="mostrar(
 'Via Julia',
 'ECC'
 )">
-</div>
+</circle>
 
 <!-- 2 -->
-<div class="marker"
-style="left:25.4%; top:44.6%;"
+<circle
+class="hotspot"
+cx="357"
+cy="479"
+r="18"
 onclick="mostrar(
 'Kevin Aguilera',
 '+34662228389',
@@ -169,11 +187,14 @@ onclick="mostrar(
 'Porta',
 'ECC'
 )">
-</div>
+</circle>
 
 <!-- 3 -->
-<div class="marker"
-style="left:33.8%; top:55.2%;"
+<circle
+class="hotspot"
+cx="476"
+cy="593"
+r="18"
 onclick="mostrar(
 'Valeri Saakyan',
 '+34619589406',
@@ -181,23 +202,29 @@ onclick="mostrar(
 'Parc Central',
 'ECC'
 )">
-</div>
+</circle>
 
 <!-- 4 -->
-<div class="marker"
-style="left:41.3%; top:47.5%;"
+<circle
+class="hotspot"
+cx="582"
+cy="511"
+r="18"
 onclick="mostrar(
 'Toni Tamargo',
 '+34655473380',
-'ynot51t@gmail.com',
+'ynot51@gmail.com',
 'Parc Central',
 'ECC'
 )">
-</div>
+</circle>
 
 <!-- 5 -->
-<div class="marker"
-style="left:39.8%; top:21%;"
+<circle
+class="hotspot"
+cx="561"
+cy="226"
+r="18"
 onclick="mostrar(
 'Edwin Javier Duarte Dubon',
 '+34677298859',
@@ -205,11 +232,14 @@ onclick="mostrar(
 'Via Julia',
 'ECC'
 )">
-</div>
+</circle>
 
 <!-- 6 -->
-<div class="marker"
-style="left:36.2%; top:16.5%;"
+<circle
+class="hotspot"
+cx="510"
+cy="178"
+r="18"
 onclick="mostrar(
 'Daniel Núñez Licona',
 '+34653402116',
@@ -217,11 +247,14 @@ onclick="mostrar(
 'Via Julia',
 'ECC'
 )">
-</div>
+</circle>
 
 <!-- 7 -->
-<div class="marker"
-style="left:27.2%; top:16.6%;"
+<circle
+class="hotspot"
+cx="383"
+cy="179"
+r="18"
 onclick="mostrar(
 'Óscar Martínez',
 '+34607242802',
@@ -229,11 +262,14 @@ onclick="mostrar(
 'Parc Central',
 'ECC'
 )">
-</div>
+</circle>
 
 <!-- 8 -->
-<div class="marker"
-style="left:21.5%; top:30.5%;"
+<circle
+class="hotspot"
+cx="303"
+cy="329"
+r="18"
 onclick="mostrar(
 'Eric Garciolo',
 '+34648666312',
@@ -241,11 +277,14 @@ onclick="mostrar(
 'Via Julia',
 'Acomodador'
 )">
-</div>
+</circle>
 
 <!-- 9 -->
-<div class="marker"
-style="left:27.3%; top:36.4%;"
+<circle
+class="hotspot"
+cx="385"
+cy="394"
+r="18"
 onclick="mostrar(
 'Luis Sangoluisa',
 '+34646309923',
@@ -253,11 +292,14 @@ onclick="mostrar(
 'Porta',
 'Acomodador'
 )">
-</div>
+</circle>
 
 <!-- 10 -->
-<div class="marker"
-style="left:34.5%; top:44.8%;"
+<circle
+class="hotspot"
+cx="486"
+cy="481"
+r="18"
 onclick="mostrar(
 'Gumersindo Carrillo',
 '+34661142406',
@@ -265,11 +307,14 @@ onclick="mostrar(
 'Porta',
 'Acomodador'
 )">
-</div>
+</circle>
 
 <!-- 11 -->
-<div class="marker"
-style="left:26.3%; top:28.7%;"
+<circle
+class="hotspot"
+cx="370"
+cy="310"
+r="18"
 onclick="mostrar(
 'Isaac Navarro',
 '+34645507075',
@@ -277,11 +322,14 @@ onclick="mostrar(
 'Vilapiscina',
 'Acomodador'
 )">
-</div>
+</circle>
 
 <!-- 12 -->
-<div class="marker"
-style="left:33%; top:35.9%;"
+<circle
+class="hotspot"
+cx="464"
+cy="389"
+r="18"
 onclick="mostrar(
 'Aarón Cerrato',
 '+34617200204',
@@ -289,11 +337,14 @@ onclick="mostrar(
 'Vilapiscina',
 'Acomodador'
 )">
-</div>
+</circle>
 
 <!-- 13 -->
-<div class="marker"
-style="left:38.3%; top:58.5%;"
+<circle
+class="hotspot"
+cx="539"
+cy="629"
+r="18"
 onclick="mostrar(
 'Samuele Cammarata',
 '+34631517739',
@@ -301,11 +352,14 @@ onclick="mostrar(
 'Vallvidriera',
 'Responsable'
 )">
-</div>
+</circle>
 
 <!-- 14 -->
-<div class="marker"
-style="left:42%; top:54%;"
+<circle
+class="hotspot"
+cx="592"
+cy="581"
+r="18"
 onclick="mostrar(
 'Gumersindo Carrillo',
 '+34661142406',
@@ -313,11 +367,14 @@ onclick="mostrar(
 'Porta',
 'Responsable'
 )">
-</div>
+</circle>
 
 <!-- 15 -->
-<div class="marker"
-style="left:46%; top:48.8%;"
+<circle
+class="hotspot"
+cx="649"
+cy="525"
+r="18"
 onclick="mostrar(
 'Cristian Walpole',
 '+34640924943',
@@ -325,18 +382,21 @@ onclick="mostrar(
 'Via Julia',
 'Responsable'
 )">
-</div>
+</circle>
+
+</svg>
 
 </div>
 
 <!-- POPUP -->
 
-<div class="popup" id="popup">
+<div class="popup"
+id="popup">
 
-<span class="close"
+<div class="close"
 onclick="cerrar()">
 ✖
-</span>
+</div>
 
 <h2 id="nombre"></h2>
 
@@ -372,7 +432,13 @@ class="btn email">
 
 <script>
 
-function mostrar(nombre,tel,email,congregacion,rol){
+function mostrar(
+nombre,
+telefono,
+email,
+congregacion,
+rol
+){
 
 document.getElementById("popup").style.display="block";
 
@@ -385,16 +451,16 @@ document.getElementById("congregacion").innerHTML=
 "<b>Congregación:</b> "+congregacion;
 
 document.getElementById("telefono").innerHTML=
-"<b>Teléfono:</b> "+tel;
+"<b>Teléfono:</b> "+telefono;
 
 document.getElementById("email").innerHTML=
 "<b>Email:</b> "+email;
 
 document.getElementById("btnLlamar").href=
-"tel:"+tel;
+"tel:"+telefono;
 
 document.getElementById("btnWhatsapp").href=
-"https://wa.me/"+tel.replace("+","");
+"https://wa.me/"+telefono.replace(/\D/g,'');
 
 document.getElementById("btnEmail").href=
 "mailto:"+email;
