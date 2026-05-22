@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Plano ECC Barcelona</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -14,27 +15,29 @@
 }
 
 body{
-    background:#f2f2f2;
+    background:#f1f1f1;
     font-family:Arial, Helvetica, sans-serif;
-    overflow-x:hidden;
 }
 
-.wrapper{
+.container{
     width:100%;
     display:flex;
     justify-content:center;
     padding:10px;
 }
 
-.map-container{
+.plano-wrapper{
     position:relative;
+
     width:100%;
     max-width:1486px;
+
+    aspect-ratio:1486 / 1059;
 }
 
-.map-container img{
+.plano{
     width:100%;
-    height:auto;
+    height:100%;
     display:block;
 }
 
@@ -43,158 +46,173 @@ body{
 .hotspot{
     position:absolute;
 
-    width:16px;
-    height:16px;
+    width:20px;
+    height:20px;
 
     border-radius:50%;
+
     background:rgba(255,0,0,0.35);
 
     transform:translate(-50%, -50%);
 
     cursor:pointer;
-    z-index:5;
+
+    z-index:10;
 }
 
 /* MODAL */
 
 .modal{
     display:none;
+
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,0.55);
+
+    background:rgba(0,0,0,0.6);
+
     z-index:999;
+
     justify-content:center;
     align-items:center;
+
     padding:20px;
 }
 
 .modal-content{
-    background:#fff;
+
+    background:white;
+
     width:100%;
     max-width:520px;
+
     border-radius:24px;
+
     padding:30px;
+
     position:relative;
 }
 
 .close{
     position:absolute;
-    top:18px;
-    right:22px;
-    font-size:34px;
-    cursor:pointer;
+    right:20px;
+    top:10px;
+
+    font-size:42px;
     font-weight:bold;
+
+    cursor:pointer;
 }
 
 .modal h2{
-    color:#0a36b5;
-    margin-bottom:18px;
-    font-size:42px;
+    color:#0d36b7;
+    margin-bottom:20px;
+    font-size:38px;
 }
 
 .modal p{
-    margin-bottom:16px;
-    font-size:30px;
+    margin-bottom:14px;
+    font-size:26px;
 }
 
-.modal strong{
-    font-weight:bold;
-}
+.botones{
+    margin-top:25px;
 
-.actions{
     display:flex;
     flex-direction:column;
-    gap:16px;
-    margin-top:28px;
+    gap:14px;
 }
 
-.actions a{
+.botones a{
     text-decoration:none;
-    color:#fff;
+    color:white;
+
     text-align:center;
-    padding:20px;
-    border-radius:16px;
-    font-size:30px;
+
+    padding:18px;
+
+    border-radius:14px;
+
+    font-size:28px;
     font-weight:bold;
 }
 
-.call{background:#1877f2;}
-.whatsapp{background:#25D366;}
-.email{background:#ff6f00;}
+.llamar{
+    background:#1877f2;
+}
+
+.whatsapp{
+    background:#25d366;
+}
+
+.email{
+    background:#ff6f00;
+}
 
 /* MOBILE */
 
 @media(max-width:768px){
 
-    .wrapper{
-        padding:0;
-    }
-
-    .modal-content{
-        padding:24px;
-        border-radius:22px;
-    }
-
-    .modal h2{
-        font-size:22px;
-    }
-
-    .modal p{
-        font-size:16px;
-    }
-
-    .actions a{
-        font-size:20px;
-        padding:16px;
-    }
-
     .hotspot{
         width:14px;
         height:14px;
     }
+
+    .modal h2{
+        font-size:24px;
+    }
+
+    .modal p{
+        font-size:17px;
+    }
+
+    .botones a{
+        font-size:20px;
+        padding:16px;
+    }
 }
+
 </style>
 </head>
 
 <body>
 
-<div class="wrapper">
+<div class="container">
 
-<div class="map-container">
+<div class="plano-wrapper">
 
-<img src="plano.png" alt="Plano ECC Barcelona">
+<img src="plano.png" class="plano">
 
 <!-- HOTSPOTS -->
 
 <div class="hotspot" style="left:18.30%; top:37.11%;" onclick="openModal(1)"></div>
 
-<div class="hotspot" style="left:24.02%; top:69.40%;" onclick="openModal(2)"></div>
+<div class="hotspot" style="left:24.02%; top:45.23%;" onclick="openModal(2)"></div>
 
-<div class="hotspot" style="left:32.03%; top:85.30%;" onclick="openModal(3)"></div>
+<div class="hotspot" style="left:32.03%; top:56.00%;" onclick="openModal(3)"></div>
 
-<div class="hotspot" style="left:39.16%; top:77.00%;" onclick="openModal(4)"></div>
+<div class="hotspot" style="left:39.16%; top:48.25%;" onclick="openModal(4)"></div>
 
-<div class="hotspot" style="left:37.75%; top:39.10%;" onclick="openModal(5)"></div>
+<div class="hotspot" style="left:37.75%; top:21.34%;" onclick="openModal(5)"></div>
 
-<div class="hotspot" style="left:34.32%; top:31.20%;" onclick="openModal(6)"></div>
+<div class="hotspot" style="left:34.32%; top:16.81%;" onclick="openModal(6)"></div>
 
-<div class="hotspot" style="left:25.77%; top:31.30%;" onclick="openModal(7)"></div>
+<div class="hotspot" style="left:25.77%; top:16.90%;" onclick="openModal(7)"></div>
 
-<div class="hotspot" style="left:20.39%; top:45.70%;" onclick="openModal(8)"></div>
+<div class="hotspot" style="left:20.39%; top:31.06%;" onclick="openModal(8)"></div>
 
-<div class="hotspot" style="left:25.90%; top:51.50%;" onclick="openModal(9)"></div>
+<div class="hotspot" style="left:25.90%; top:37.20%;" onclick="openModal(9)"></div>
 
-<div class="hotspot" style="left:32.70%; top:65.10%;" onclick="openModal(10)"></div>
+<div class="hotspot" style="left:32.70%; top:45.42%;" onclick="openModal(10)"></div>
 
-<div class="hotspot" style="left:24.90%; top:43.30%;" onclick="openModal(11)"></div>
+<div class="hotspot" style="left:24.90%; top:29.27%;" onclick="openModal(11)"></div>
 
-<div class="hotspot" style="left:31.22%; top:54.10%;" onclick="openModal(12)"></div>
+<div class="hotspot" style="left:31.22%; top:36.73%;" onclick="openModal(12)"></div>
 
-<div class="hotspot" style="left:36.27%; top:88.80%;" onclick="openModal(13)"></div>
+<div class="hotspot" style="left:36.27%; top:59.40%;" onclick="openModal(13)"></div>
 
-<div class="hotspot" style="left:39.83%; top:83.40%;" onclick="openModal(14)"></div>
+<div class="hotspot" style="left:39.83%; top:54.86%;" onclick="openModal(14)"></div>
 
-<div class="hotspot" style="left:43.67%; top:74.40%;" onclick="openModal(15)"></div>
+<div class="hotspot" style="left:43.67%; top:49.58%;" onclick="openModal(15)"></div>
 
 </div>
 </div>
@@ -217,13 +235,13 @@ body{
 
 <p><strong>Email:</strong> <span id="email"></span></p>
 
-<div class="actions">
+<div class="botones">
 
-<a id="btnCall" class="call" href="#">📞 Llamar</a>
+<a id="btnCall" class="llamar">📞 Llamar</a>
 
-<a id="btnWhatsapp" class="whatsapp" href="#" target="_blank">WhatsApp</a>
+<a id="btnWhatsapp" class="whatsapp" target="_blank">WhatsApp</a>
 
-<a id="btnEmail" class="email" href="#">✉ Email</a>
+<a id="btnEmail" class="email">✉ Email</a>
 
 </div>
 
@@ -369,20 +387,20 @@ document.getElementById("email").innerText = p.email;
 document.getElementById("btnCall").href = "tel:" + p.telefono;
 
 document.getElementById("btnWhatsapp").href =
-"https://wa.me/" + p.telefono.replace(/\+/g,'');
+"https://wa.me/" + p.telefono.replace("+","");
 
 document.getElementById("btnEmail").href =
 "mailto:" + p.email;
 
-document.getElementById("modal").style.display="flex";
+document.getElementById("modal").style.display = "flex";
 }
 
 function closeModal(){
-document.getElementById("modal").style.display="none";
+document.getElementById("modal").style.display = "none";
 }
 
 window.onclick = function(e){
-if(e.target == document.getElementById("modal")){
+if(e.target.id === "modal"){
 closeModal();
 }
 }
