@@ -170,212 +170,49 @@ body{
 
 <script>
 
-/* =========================
-   DATOS
-========================= */
-
-const personas = {
-
-1:{
-    nombre:"David Robles",
-    rol:"ECC",
-    congregacion:"Barcelona",
-    telefono:"+34600000001",
-    email:"david@gmail.com"
-},
-
-2:{
-    nombre:"Kevin Aguilera",
-    rol:"ECC",
-    congregacion:"Barcelona",
-    telefono:"+34600000002",
-    email:"kevin@gmail.com"
-},
-
-3:{
-    nombre:"Valeri Saakyan",
-    rol:"ECC",
-    congregacion:"Barcelona",
-    telefono:"+34600000003",
-    email:"valeri@gmail.com"
-},
-
-4:{
-    nombre:"Toni Tamargo",
-    rol:"ECC",
-    congregacion:"Barcelona",
-    telefono:"+34600000004",
-    email:"toni@gmail.com"
-},
-
-5:{
-    nombre:"Edwin Javier Duarte Dubon",
-    rol:"ECC",
-    congregacion:"Via Julia",
-    telefono:"+34677298859",
-    email:"javierduarte.1981@gmail.com"
-},
-
-6:{
-    nombre:"Daniel Núñez Licona",
-    rol:"ECC",
-    congregacion:"Barcelona",
-    telefono:"+34600000006",
-    email:"daniel@gmail.com"
-},
-
-7:{
-    nombre:"Óscar Martínez",
-    rol:"ECC",
-    congregacion:"Barcelona",
-    telefono:"+34600000007",
-    email:"oscar@gmail.com"
-},
-
-8:{
-    nombre:"Eric Garciolo",
-    rol:"Acomodador",
-    congregacion:"Barcelona",
-    telefono:"+34600000008",
-    email:"eric@gmail.com"
-},
-
-9:{
-    nombre:"Luis Sangoluisa",
-    rol:"Acomodador",
-    congregacion:"Barcelona",
-    telefono:"+34600000009",
-    email:"luis@gmail.com"
-},
-
-10:{
-    nombre:"Gumersindo Carrillo",
-    rol:"Acomodador",
-    congregacion:"Porta",
-    telefono:"+34661142406",
-    email:"camba7119@hotmail.com"
-},
-
-11:{
-    nombre:"Isaac Navarro",
-    rol:"Acomodador",
-    congregacion:"Barcelona",
-    telefono:"+34600000011",
-    email:"isaac@gmail.com"
-},
-
-12:{
-    nombre:"Aarón Cerrato",
-    rol:"Acomodador",
-    congregacion:"Barcelona",
-    telefono:"+34600000012",
-    email:"aaron@gmail.com"
-},
-
-13:{
-    nombre:"Samuele Cammarata",
-    rol:"Responsable",
-    congregacion:"Barcelona",
-    telefono:"+34600000013",
-    email:"samuele@gmail.com"
-},
-
-14:{
-    nombre:"Gumersindo Carrillo",
-    rol:"Responsable",
-    congregacion:"Porta",
-    telefono:"+34661142406",
-    email:"camba7119@hotmail.com"
-},
-
-15:{
-    nombre:"Cristian Walpole",
-    rol:"Responsable",
-    congregacion:"Barcelona",
-    telefono:"+34600000015",
-    email:"cristian@gmail.com"
-}
-
-};
-
-/* =========================
-   COORDENADAS CORREGIDAS
-========================= */
-
-const hotspots = {
-
-1: { x:368, y:470 },
-2: { x:493, y:598 },
-3: { x:645, y:840 },
-4: { x:783, y:695 },
-
-5: { x:744, y:235 },
-6: { x:654, y:127 },
-7: { x:508, y:128 },
-
-8: { x:390, y:365 },
-9: { x:538, y:531 },
-10:{ x:674, y:690 },
-
-11:{ x:500, y:360 },
-12:{ x:646, y:530 },
-
-13:{ x:782, y:963 },
-14:{ x:870, y:844 },
-15:{ x:934, y:682 }
-
-};
-
-/* =========================
-   CREAR HOTSPOTS
-========================= */
+const hotspots = {};
 
 const mapContainer = document.getElementById("map-container");
 
-Object.entries(hotspots).forEach(([id, pos]) => {
-
-    const point = document.createElement("div");
-
-    point.className = "hotspot";
-
-    point.style.left = (pos.x / 1486 * 100) + "%";
-    point.style.top  = (pos.y / 1059 * 100) + "%";
-
-    point.onclick = () => openPopup(id);
-
-    mapContainer.appendChild(point);
-});
-
 /* =========================
-   POPUP
+   CAPTURAR COORDENADAS
 ========================= */
 
-function openPopup(id){
+mapContainer.addEventListener("click", function(e){
 
-    const p = personas[id];
+    const rect = mapContainer.getBoundingClientRect();
 
-    document.getElementById("popup-name").innerText = p.nombre;
-    document.getElementById("popup-role").innerText = p.rol;
-    document.getElementById("popup-cong").innerText = p.congregacion;
-    document.getElementById("popup-phone").innerText = p.telefono;
-    document.getElementById("popup-email").innerText = p.email;
+    const x = Math.round(
+        ((e.clientX - rect.left) / rect.width) * 1486
+    );
 
-    document.getElementById("call-btn").href =
-        "tel:" + p.telefono;
+    const y = Math.round(
+        ((e.clientY - rect.top) / rect.height) * 1059
+    );
 
-    document.getElementById("wa-btn").href =
-        "https://wa.me/" + p.telefono.replace("+","");
+    console.log(`X: ${x}  Y: ${y}`);
 
-    document.getElementById("mail-btn").href =
-        "mailto:" + p.email;
+    // círculo visual temporal
+    const point = document.createElement("div");
 
-    document.getElementById("popup").style.display = "block";
-}
+    point.style.position = "absolute";
+    point.style.width = "16px";
+    point.style.height = "16px";
+    point.style.borderRadius = "50%";
+    point.style.background = "red";
+    point.style.opacity = "0.7";
+    point.style.pointerEvents = "none";
+    point.style.transform = "translate(-50%, -50%)";
 
-function closePopup(){
+    point.style.left =
+        ((x / 1486) * 100) + "%";
 
-    document.getElementById("popup").style.display = "none";
-}
+    point.style.top =
+        ((y / 1059) * 100) + "%";
+
+    mapContainer.appendChild(point);
+
+});
 
 </script>
 
