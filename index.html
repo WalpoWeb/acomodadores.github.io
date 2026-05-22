@@ -2,11 +2,8 @@
 <html lang="es">
 
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Plano ECC Barcelona</title>
 
@@ -21,12 +18,12 @@ body{
 .container{
 
     position:relative;
-
     width:100%;
     max-width:1434px;
-
     margin:auto;
 }
+
+/* IMAGEN */
 
 .plano{
 
@@ -34,19 +31,19 @@ body{
     display:block;
 }
 
-/* ========================= */
-/* SVG AJUSTADO AL MARCO */
-/* ========================= */
+/* SVG PERFECTAMENTE SUPERPUESTO */
 
-svg{
+.overlay{
 
     position:absolute;
 
-    top:2.1%;
-    left:2.4%;
+    top:0;
+    left:0;
 
-    width:95.2%;
-    height:95.2%;
+    width:100%;
+    height:100%;
+
+    pointer-events:none;
 }
 
 /* HOTSPOTS */
@@ -54,19 +51,18 @@ svg{
 .hotspot{
 
     fill:red;
-
     opacity:.28;
 
     cursor:pointer;
 
-    transition:.2s;
+    pointer-events:auto;
 
-    transform-box: fill-box;
-    transform-origin: center;
+    transition:.2s;
 }
 
 .hotspot:hover{
-    opacity:.45;
+
+    opacity:.5;
 }
 
 /* POPUP */
@@ -99,7 +95,6 @@ svg{
 .popup h2{
 
     margin-top:0;
-
     color:#003399;
 }
 
@@ -111,20 +106,16 @@ svg{
     right:20px;
 
     font-size:30px;
+    font-weight:bold;
 
     cursor:pointer;
-
-    font-weight:bold;
 }
 
 .info{
 
     line-height:1.8;
-
     margin-top:15px;
 }
-
-/* BOTONES */
 
 .btn{
 
@@ -159,14 +150,11 @@ svg{
     background:#ff7300;
 }
 
-/* MOBILE */
-
 @media(max-width:768px){
 
 .popup{
 
     width:94%;
-
     padding:18px;
 }
 
@@ -178,233 +166,80 @@ svg{
 }
 
 </style>
-
 </head>
 
 <body>
 
 <div class="container">
 
-<img src="plano.png"
-class="plano">
+<img src="plano.png" class="plano">
 
-<!--
-SVG PERFECTAMENTE
-ALINEADO
--->
+<!-- SVG EXACTAMENTE ENCIMA -->
 
-<svg viewBox="0 0 1434 1000"
-preserveAspectRatio="xMidYMid meet">
+<svg
+class="overlay"
+viewBox="0 0 1434 1000"
+preserveAspectRatio="none">
 
 <!-- 1 -->
-<circle class="hotspot"
-cx="272"
-cy="393"
-r="10"
-onclick="mostrar(
-'David Robles',
-'+34608049585',
-'dra-70@hotmail.es',
-'Via Julia',
-'ECC'
-)">
-</circle>
+<circle class="hotspot" cx="272" cy="393" r="10"
+onclick="mostrar('David Robles','+34608049585','dra-70@hotmail.es','Via Julia','ECC')"/>
 
 <!-- 2 -->
-<circle class="hotspot"
-cx="357"
-cy="479"
-r="10"
-onclick="mostrar(
-'Kevin Aguilera',
-'+34662228389',
-'k_a_r@hotmail.es',
-'Porta',
-'ECC'
-)">
-</circle>
+<circle class="hotspot" cx="357" cy="479" r="10"
+onclick="mostrar('Kevin Aguilera','+34662228389','k_a_r@hotmail.es','Porta','ECC')"/>
 
 <!-- 3 -->
-<circle class="hotspot"
-cx="476"
-cy="593"
-r="10"
-onclick="mostrar(
-'Valeri Saakyan',
-'+34619589406',
-'valeriimarta@gmail.com',
-'Parc Central',
-'ECC'
-)">
-</circle>
+<circle class="hotspot" cx="476" cy="593" r="10"
+onclick="mostrar('Valeri Saakyan','+34619589406','valeriimarta@gmail.com','Parc Central','ECC')"/>
 
 <!-- 4 -->
-<circle class="hotspot"
-cx="582"
-cy="511"
-r="10"
-onclick="mostrar(
-'Toni Tamargo',
-'+34655473380',
-'ynot51@gmail.com',
-'Parc Central',
-'ECC'
-)">
-</circle>
+<circle class="hotspot" cx="582" cy="511" r="10"
+onclick="mostrar('Toni Tamargo','+34655473380','ynot51@gmail.com','Parc Central','ECC')"/>
 
 <!-- 5 -->
-<circle class="hotspot"
-cx="561"
-cy="226"
-r="10"
-onclick="mostrar(
-'Edwin Javier Duarte Dubon',
-'+34677298859',
-'javierduarte.1981@gmail.com',
-'Via Julia',
-'ECC'
-)">
-</circle>
+<circle class="hotspot" cx="561" cy="226" r="10"
+onclick="mostrar('Edwin Javier Duarte Dubon','+34677298859','javierduarte.1981@gmail.com','Via Julia','ECC')"/>
 
 <!-- 6 -->
-<circle class="hotspot"
-cx="510"
-cy="178"
-r="10"
-onclick="mostrar(
-'Daniel Núñez Licona',
-'+34653402116',
-'gdnl7.dn@gmail.com',
-'Via Julia',
-'ECC'
-)">
-</circle>
+<circle class="hotspot" cx="510" cy="178" r="10"
+onclick="mostrar('Daniel Núñez Licona','+34653402116','gdnl7.dn@gmail.com','Via Julia','ECC')"/>
 
 <!-- 7 -->
-<circle class="hotspot"
-cx="383"
-cy="179"
-r="10"
-onclick="mostrar(
-'Óscar Martínez',
-'+34607242802',
-'omartinez013@gmail.com',
-'Parc Central',
-'ECC'
-)">
-</circle>
+<circle class="hotspot" cx="383" cy="179" r="10"
+onclick="mostrar('Óscar Martínez','+34607242802','omartinez013@gmail.com','Parc Central','ECC')"/>
 
 <!-- 8 -->
-<circle class="hotspot"
-cx="303"
-cy="329"
-r="10"
-onclick="mostrar(
-'Eric Garciolo',
-'+34648666312',
-'ericgarciolo@gmail.com',
-'Via Julia',
-'Acomodador'
-)">
-</circle>
+<circle class="hotspot" cx="303" cy="329" r="10"
+onclick="mostrar('Eric Garciolo','+34648666312','ericgarciolo@gmail.com','Via Julia','Acomodador')"/>
 
 <!-- 9 -->
-<circle class="hotspot"
-cx="385"
-cy="394"
-r="10"
-onclick="mostrar(
-'Luis Sangoluisa',
-'+34646309923',
-'luissangoluisa10@gmail.com',
-'Porta',
-'Acomodador'
-)">
-</circle>
+<circle class="hotspot" cx="385" cy="394" r="10"
+onclick="mostrar('Luis Sangoluisa','+34646309923','luissangoluisa10@gmail.com','Porta','Acomodador')"/>
 
 <!-- 10 -->
-<circle class="hotspot"
-cx="486"
-cy="481"
-r="10"
-onclick="mostrar(
-'Gumersindo Carrillo',
-'+34661142406',
-'camba7119@hotmail.com',
-'Porta',
-'Acomodador'
-)">
-</circle>
+<circle class="hotspot" cx="486" cy="481" r="10"
+onclick="mostrar('Gumersindo Carrillo','+34661142406','camba7119@hotmail.com','Porta','Acomodador')"/>
 
 <!-- 11 -->
-<circle class="hotspot"
-cx="370"
-cy="310"
-r="10"
-onclick="mostrar(
-'Isaac Navarro',
-'+34645507075',
-'',
-'Vilapiscina',
-'Acomodador'
-)">
-</circle>
+<circle class="hotspot" cx="370" cy="310" r="10"
+onclick="mostrar('Isaac Navarro','+34645507075','','Vilapiscina','Acomodador')"/>
 
 <!-- 12 -->
-<circle class="hotspot"
-cx="464"
-cy="389"
-r="10"
-onclick="mostrar(
-'Aarón Cerrato',
-'+34617200204',
-'aaroncerratojw@gmail.com',
-'Vilapiscina',
-'Acomodador'
-)">
-</circle>
+<circle class="hotspot" cx="464" cy="389" r="10"
+onclick="mostrar('Aarón Cerrato','+34617200204','aaroncerratojw@gmail.com','Vilapiscina','Acomodador')"/>
 
 <!-- 13 -->
-<circle class="hotspot"
-cx="539"
-cy="629"
-r="10"
-onclick="mostrar(
-'Samuele Cammarata',
-'+34631517739',
-'samuelecammarata@gmail.com',
-'Vallvidriera',
-'Responsable'
-)">
-</circle>
+<circle class="hotspot" cx="539" cy="629" r="10"
+onclick="mostrar('Samuele Cammarata','+34631517739','samuelecammarata@gmail.com','Vallvidriera','Responsable')"/>
 
 <!-- 14 -->
-<circle class="hotspot"
-cx="592"
-cy="581"
-r="10"
-onclick="mostrar(
-'Gumersindo Carrillo',
-'+34661142406',
-'camba7119@hotmail.com',
-'Porta',
-'Responsable'
-)">
-</circle>
+<circle class="hotspot" cx="592" cy="581" r="10"
+onclick="mostrar('Gumersindo Carrillo','+34661142406','camba7119@hotmail.com','Porta','Responsable')"/>
 
 <!-- 15 -->
-<circle class="hotspot"
-cx="649"
-cy="525"
-r="10"
-onclick="mostrar(
-'Cristian Walpole',
-'+34640924943',
-'cristianwal@hotmail.com',
-'Via Julia',
-'Responsable'
-)">
-</circle>
+<circle class="hotspot" cx="649" cy="525" r="10"
+onclick="mostrar('Cristian Walpole','+34640924943','cristianwal@hotmail.com','Via Julia','Responsable')"/>
 
 </svg>
 
@@ -412,41 +247,28 @@ onclick="mostrar(
 
 <!-- POPUP -->
 
-<div class="popup"
-id="popup">
+<div class="popup" id="popup">
 
-<div class="close"
-onclick="cerrar()">
-✖
-</div>
+<div class="close" onclick="cerrar()">✖</div>
 
 <h2 id="nombre"></h2>
 
 <div class="info">
 
 <div id="rol"></div>
-
 <div id="congregacion"></div>
-
 <div id="telefono"></div>
-
 <div id="email"></div>
 
 </div>
 
-<a id="btnLlamar"
-class="btn llamar">
-📞 Llamar
-</a>
+<a id="btnLlamar" class="btn llamar">📞 Llamar</a>
 
-<a id="btnWhatsapp"
-class="btn whatsapp"
-target="_blank">
+<a id="btnWhatsapp" class="btn whatsapp" target="_blank">
 WhatsApp
 </a>
 
-<a id="btnEmail"
-class="btn email">
+<a id="btnEmail" class="btn email">
 ✉ Email
 </a>
 
@@ -454,13 +276,7 @@ class="btn email">
 
 <script>
 
-function mostrar(
-nombre,
-telefono,
-email,
-congregacion,
-rol
-){
+function mostrar(nombre,telefono,email,congregacion,rol){
 
 document.getElementById("popup").style.display="block";
 
