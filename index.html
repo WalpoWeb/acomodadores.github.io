@@ -1,266 +1,390 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <title>Plano ECC Barcelona</title>
 
 <style>
-
-body{
+*{
     margin:0;
-    background:#ececec;
-    font-family:Arial,sans-serif;
+    padding:0;
+    box-sizing:border-box;
 }
 
-.container{
+body{
+    background:#f2f2f2;
+    font-family:Arial, Helvetica, sans-serif;
+    overflow-x:hidden;
+}
 
+.wrapper{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    padding:10px;
+}
+
+.map-container{
     position:relative;
     width:100%;
     max-width:1486px;
-    margin:auto;
 }
 
-.plano{
-
+.map-container img{
     width:100%;
+    height:auto;
     display:block;
 }
 
 /* HOTSPOTS */
 
 .hotspot{
-
     position:absolute;
 
-    width:22px;
-    height:22px;
-
-    background:red;
+    width:16px;
+    height:16px;
 
     border-radius:50%;
+    background:rgba(255,0,0,0.35);
 
-    opacity:.35;
-
-    transform:translate(-50%,-50%);
+    transform:translate(-50%, -50%);
 
     cursor:pointer;
-
-    transition:.2s;
+    z-index:5;
 }
 
-.hotspot:hover{
+/* MODAL */
 
-    opacity:.6;
-}
-
-/* POPUP */
-
-.popup{
-
-    position:fixed;
-
-    left:50%;
-    bottom:10px;
-
-    transform:translateX(-50%);
-
-    width:92%;
-    max-width:430px;
-
-    background:white;
-
-    border-radius:22px;
-
-    padding:22px;
-
-    z-index:9999;
-
+.modal{
     display:none;
-
-    box-shadow:0 0 30px rgba(0,0,0,.35);
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.55);
+    z-index:999;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
 }
 
-.popup h2{
-
-    margin-top:0;
-    color:#003399;
+.modal-content{
+    background:#fff;
+    width:100%;
+    max-width:520px;
+    border-radius:24px;
+    padding:30px;
+    position:relative;
 }
 
 .close{
-
     position:absolute;
+    top:18px;
+    right:22px;
+    font-size:34px;
+    cursor:pointer;
+    font-weight:bold;
+}
 
-    top:15px;
-    right:20px;
+.modal h2{
+    color:#0a36b5;
+    margin-bottom:18px;
+    font-size:42px;
+}
 
+.modal p{
+    margin-bottom:16px;
+    font-size:30px;
+}
+
+.modal strong{
+    font-weight:bold;
+}
+
+.actions{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    margin-top:28px;
+}
+
+.actions a{
+    text-decoration:none;
+    color:#fff;
+    text-align:center;
+    padding:20px;
+    border-radius:16px;
     font-size:30px;
     font-weight:bold;
-
-    cursor:pointer;
 }
 
-.info{
+.call{background:#1877f2;}
+.whatsapp{background:#25D366;}
+.email{background:#ff6f00;}
 
-    line-height:1.8;
-    margin-top:15px;
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .wrapper{
+        padding:0;
+    }
+
+    .modal-content{
+        padding:24px;
+        border-radius:22px;
+    }
+
+    .modal h2{
+        font-size:22px;
+    }
+
+    .modal p{
+        font-size:16px;
+    }
+
+    .actions a{
+        font-size:20px;
+        padding:16px;
+    }
+
+    .hotspot{
+        width:14px;
+        height:14px;
+    }
 }
-
-.btn{
-
-    display:block;
-
-    text-align:center;
-
-    text-decoration:none;
-
-    color:white;
-
-    font-weight:bold;
-
-    padding:16px;
-
-    border-radius:14px;
-
-    margin-top:14px;
-
-    font-size:22px;
-}
-
-.llamar{
-    background:#1677ff;
-}
-
-.whatsapp{
-    background:#28d146;
-}
-
-.email{
-    background:#ff7300;
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="wrapper">
 
-<img src="plano.png" class="plano">
+<div class="map-container">
+
+<img src="plano.png" alt="Plano ECC Barcelona">
 
 <!-- HOTSPOTS -->
 
-<div class="hotspot" style="left:25.8%; top:57.5%;"
-onclick="mostrar('David Robles','+34608049585','dra-70@hotmail.es','Via Julia','ECC')"></div>
+<div class="hotspot" style="left:18.30%; top:37.11%;" onclick="openModal(1)"></div>
 
-<div class="hotspot" style="left:33.8%; top:66.5%;"
-onclick="mostrar('Kevin Aguilera','+34662228389','k_a_r@hotmail.es','Porta','ECC')"></div>
+<div class="hotspot" style="left:24.02%; top:69.40%;" onclick="openModal(2)"></div>
 
-<div class="hotspot" style="left:42.7%; top:77%;"
-onclick="mostrar('Valeri Saakyan','+34619589406','valeriimarta@gmail.com','Parc Central','ECC')"></div>
+<div class="hotspot" style="left:32.03%; top:85.30%;" onclick="openModal(3)"></div>
 
-<div class="hotspot" style="left:52.2%; top:67%;"
-onclick="mostrar('Toni Tamargo','+34655473380','ynot51@gmail.com','Parc Central','ECC')"></div>
+<div class="hotspot" style="left:39.16%; top:77.00%;" onclick="openModal(4)"></div>
 
-<div class="hotspot" style="left:50.5%; top:33%;"
-onclick="mostrar('Edwin Javier Duarte Dubon','+34677298859','javierduarte.1981@gmail.com','Via Julia','ECC')"></div>
+<div class="hotspot" style="left:37.75%; top:39.10%;" onclick="openModal(5)"></div>
 
-<div class="hotspot" style="left:45.8%; top:28.5%;"
-onclick="mostrar('Daniel Núñez Licona','+34653402116','gdnl7.dn@gmail.com','Via Julia','ECC')"></div>
+<div class="hotspot" style="left:34.32%; top:31.20%;" onclick="openModal(6)"></div>
 
-<div class="hotspot" style="left:37.2%; top:28.5%;"
-onclick="mostrar('Óscar Martínez','+34607242802','omartinez013@gmail.com','Parc Central','ECC')"></div>
+<div class="hotspot" style="left:25.77%; top:31.30%;" onclick="openModal(7)"></div>
 
-<div class="hotspot" style="left:29.5%; top:42.5%;"
-onclick="mostrar('Eric Garciolo','+34648666312','ericgarciolo@gmail.com','Via Julia','Acomodador')"></div>
+<div class="hotspot" style="left:20.39%; top:45.70%;" onclick="openModal(8)"></div>
 
-<div class="hotspot" style="left:37.5%; top:48.5%;"
-onclick="mostrar('Luis Sangoluisa','+34646309923','luissangoluisa10@gmail.com','Porta','Acomodador')"></div>
+<div class="hotspot" style="left:25.90%; top:51.50%;" onclick="openModal(9)"></div>
 
-<div class="hotspot" style="left:46.5%; top:56.5%;"
-onclick="mostrar('Gumersindo Carrillo','+34661142406','camba7119@hotmail.com','Porta','Acomodador')"></div>
+<div class="hotspot" style="left:32.70%; top:65.10%;" onclick="openModal(10)"></div>
 
-<div class="hotspot" style="left:36%; top:40.5%;"
-onclick="mostrar('Isaac Navarro','+34645507075','','Vilapiscina','Acomodador')"></div>
+<div class="hotspot" style="left:24.90%; top:43.30%;" onclick="openModal(11)"></div>
 
-<div class="hotspot" style="left:44.5%; top:48%;"
-onclick="mostrar('Aarón Cerrato','+34617200204','aaroncerratojw@gmail.com','Vilapiscina','Acomodador')"></div>
+<div class="hotspot" style="left:31.22%; top:54.10%;" onclick="openModal(12)"></div>
 
-<div class="hotspot" style="left:51%; top:80%;"
-onclick="mostrar('Samuele Cammarata','+34631517739','samuelecammarata@gmail.com','Vallvidriera','Responsable')"></div>
+<div class="hotspot" style="left:36.27%; top:88.80%;" onclick="openModal(13)"></div>
 
-<div class="hotspot" style="left:56%; top:74%;"
-onclick="mostrar('Gumersindo Carrillo','+34661142406','camba7119@hotmail.com','Porta','Responsable')"></div>
+<div class="hotspot" style="left:39.83%; top:83.40%;" onclick="openModal(14)"></div>
 
-<div class="hotspot" style="left:61%; top:67%;"
-onclick="mostrar('Cristian Walpole','+34640924943','cristianwal@hotmail.com','Via Julia','Responsable')"></div>
+<div class="hotspot" style="left:43.67%; top:74.40%;" onclick="openModal(15)"></div>
 
 </div>
+</div>
 
-<!-- POPUP -->
+<!-- MODAL -->
 
-<div class="popup" id="popup">
+<div class="modal" id="modal">
 
-<div class="close" onclick="cerrar()">✖</div>
+<div class="modal-content">
+
+<span class="close" onclick="closeModal()">&times;</span>
 
 <h2 id="nombre"></h2>
 
-<div class="info">
+<p><strong>Rol:</strong> <span id="rol"></span></p>
 
-<div id="rol"></div>
-<div id="congregacion"></div>
-<div id="telefono"></div>
-<div id="email"></div>
+<p><strong>Congregación:</strong> <span id="congregacion"></span></p>
+
+<p><strong>Teléfono:</strong> <span id="telefono"></span></p>
+
+<p><strong>Email:</strong> <span id="email"></span></p>
+
+<div class="actions">
+
+<a id="btnCall" class="call" href="#">📞 Llamar</a>
+
+<a id="btnWhatsapp" class="whatsapp" href="#" target="_blank">WhatsApp</a>
+
+<a id="btnEmail" class="email" href="#">✉ Email</a>
 
 </div>
 
-<a id="btnLlamar" class="btn llamar">📞 Llamar</a>
-
-<a id="btnWhatsapp" class="btn whatsapp" target="_blank">
-WhatsApp
-</a>
-
-<a id="btnEmail" class="btn email">
-✉ Email
-</a>
-
+</div>
 </div>
 
 <script>
 
-function mostrar(nombre,telefono,email,congregacion,rol){
+const personas = {
 
-document.getElementById("popup").style.display="block";
+1:{
+nombre:"David Robles",
+rol:"ECC",
+congregacion:"Barcelona",
+telefono:"+34600000001",
+email:"david@email.com"
+},
 
-document.getElementById("nombre").innerHTML=nombre;
+2:{
+nombre:"Kevin Aguilera",
+rol:"ECC",
+congregacion:"Barcelona",
+telefono:"+34600000002",
+email:"kevin@email.com"
+},
 
-document.getElementById("rol").innerHTML=
-"<b>Rol:</b> "+rol;
+3:{
+nombre:"Valeri Saakyan",
+rol:"ECC",
+congregacion:"Barcelona",
+telefono:"+34600000003",
+email:"valeri@email.com"
+},
 
-document.getElementById("congregacion").innerHTML=
-"<b>Congregación:</b> "+congregacion;
+4:{
+nombre:"Toni Tamargo",
+rol:"ECC",
+congregacion:"Barcelona",
+telefono:"+34600000004",
+email:"toni@email.com"
+},
 
-document.getElementById("telefono").innerHTML=
-"<b>Teléfono:</b> "+telefono;
+5:{
+nombre:"Edwin Javier Duarte Dubon",
+rol:"ECC",
+congregacion:"Via Julia",
+telefono:"+34677298859",
+email:"javierduarte.1981@gmail.com"
+},
 
-document.getElementById("email").innerHTML=
-"<b>Email:</b> "+email;
+6:{
+nombre:"Daniel Núñez Licona",
+rol:"ECC",
+congregacion:"Barcelona",
+telefono:"+34600000006",
+email:"daniel@email.com"
+},
 
-document.getElementById("btnLlamar").href=
-"tel:"+telefono;
+7:{
+nombre:"Óscar Martínez",
+rol:"ECC",
+congregacion:"Barcelona",
+telefono:"+34600000007",
+email:"oscar@email.com"
+},
 
-document.getElementById("btnWhatsapp").href=
-"https://wa.me/"+telefono.replace(/\D/g,'');
+8:{
+nombre:"Eric Garciolo",
+rol:"Acomodador",
+congregacion:"Barcelona",
+telefono:"+34600000008",
+email:"eric@email.com"
+},
 
-document.getElementById("btnEmail").href=
-"mailto:"+email;
+9:{
+nombre:"Luis Sangoluisa",
+rol:"Acomodador",
+congregacion:"Barcelona",
+telefono:"+34600000009",
+email:"luis@email.com"
+},
+
+10:{
+nombre:"Gumersindo Carrillo",
+rol:"Acomodador",
+congregacion:"Porta",
+telefono:"+34661142406",
+email:"camba7119@hotmail.com"
+},
+
+11:{
+nombre:"Isaac Navarro",
+rol:"Acomodador",
+congregacion:"Barcelona",
+telefono:"+34600000011",
+email:"isaac@email.com"
+},
+
+12:{
+nombre:"Aarón Cerrato",
+rol:"Acomodador",
+congregacion:"Barcelona",
+telefono:"+34600000012",
+email:"aaron@email.com"
+},
+
+13:{
+nombre:"Samuele Cammarata",
+rol:"Responsable",
+congregacion:"Barcelona",
+telefono:"+34600000013",
+email:"samuele@email.com"
+},
+
+14:{
+nombre:"Gumersindo Carrillo",
+rol:"Responsable",
+congregacion:"Porta",
+telefono:"+34661142406",
+email:"camba7119@hotmail.com"
+},
+
+15:{
+nombre:"Cristian Walpole",
+rol:"Responsable",
+congregacion:"Barcelona",
+telefono:"+34600000015",
+email:"cristian@email.com"
 }
 
-function cerrar(){
+};
 
-document.getElementById("popup").style.display="none";
+function openModal(id){
+
+const p = personas[id];
+
+document.getElementById("nombre").innerText = p.nombre;
+document.getElementById("rol").innerText = p.rol;
+document.getElementById("congregacion").innerText = p.congregacion;
+document.getElementById("telefono").innerText = p.telefono;
+document.getElementById("email").innerText = p.email;
+
+document.getElementById("btnCall").href = "tel:" + p.telefono;
+
+document.getElementById("btnWhatsapp").href =
+"https://wa.me/" + p.telefono.replace(/\+/g,'');
+
+document.getElementById("btnEmail").href =
+"mailto:" + p.email;
+
+document.getElementById("modal").style.display="flex";
+}
+
+function closeModal(){
+document.getElementById("modal").style.display="none";
+}
+
+window.onclick = function(e){
+if(e.target == document.getElementById("modal")){
+closeModal();
+}
 }
 
 </script>
