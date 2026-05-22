@@ -4,16 +4,21 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 
 <title>Plano ECC Barcelona</title>
 
 <style>
 
 body{
+
     margin:0;
+
     background:#ececec;
-    font-family:Arial;
+
+    font-family:Arial,sans-serif;
 }
 
 /* CONTENEDOR */
@@ -22,21 +27,25 @@ body{
 
     position:relative;
 
-    width:1200px;
+    width:100%;
 
-    margin:20px auto;
+    max-width:1200px;
+
+    margin:auto;
 }
 
 /* IMAGEN */
 
 .plano{
 
-    width:1200px;
+    width:100%;
+
+    height:auto;
 
     display:block;
 }
 
-/* HOTSPOTS INVISIBLES */
+/* HOTSPOTS */
 
 .marker{
 
@@ -86,6 +95,21 @@ body{
     display:none;
 
     z-index:99999;
+
+    animation:fadeIn .2s ease;
+}
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateX(-50%) translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(-50%) translateY(0);
+    }
 }
 
 .popup h2{
@@ -101,7 +125,7 @@ body{
 
     cursor:pointer;
 
-    font-size:24px;
+    font-size:26px;
 
     font-weight:bold;
 }
@@ -148,33 +172,24 @@ body{
 
 /* MOBILE */
 
-@media(max-width:1280px){
+@media(max-width:768px){
 
-    .container{
+    .marker{
 
-        width:100%;
-        overflow-x:auto;
+        width:52px;
+
+        height:52px;
     }
 
-    .plano{
+    .popup{
 
-        width:1200px;
+        width:92%;
     }
 }
 
 </style>
 
 </head>
-
-<script src="https://cdn.jsdelivr.net/npm/pinch-zoom-js@2.3.5/dist/pinch-zoom.umd.js"></script>
-
-<script>
-
-new PinchZoom.default(document.querySelector('.container'), {
-    draggableUnzoomed: false
-});
-
-</script>
 
 <body>
 
@@ -183,12 +198,12 @@ new PinchZoom.default(document.querySelector('.container'), {
 <img src="plano.png" class="plano">
 
 <!-- ===================== -->
-<!-- HOTSPOTS FINALES -->
+<!-- HOTSPOTS -->
 <!-- ===================== -->
 
 <!-- 1 -->
 <div class="marker"
-style="left:272px; top:393px;"
+style="left:22.7%; top:32.7%;"
 onclick="mostrar(
 'David Robles',
 '+34608049585',
@@ -200,7 +215,7 @@ onclick="mostrar(
 
 <!-- 2 -->
 <div class="marker"
-style="left:357px; top:479px;"
+style="left:29.7%; top:39.9%;"
 onclick="mostrar(
 'Kevin Aguilera',
 '+34662228389',
@@ -212,7 +227,7 @@ onclick="mostrar(
 
 <!-- 3 -->
 <div class="marker"
-style="left:476px; top:593px;"
+style="left:39.6%; top:49.4%;"
 onclick="mostrar(
 'Valeri Saakyan',
 '+34619589406',
@@ -224,7 +239,7 @@ onclick="mostrar(
 
 <!-- 4 -->
 <div class="marker"
-style="left:582px; top:511px;"
+style="left:48.5%; top:42.6%;"
 onclick="mostrar(
 'Toni Tamargo',
 '+34655473380',
@@ -236,7 +251,7 @@ onclick="mostrar(
 
 <!-- 5 -->
 <div class="marker"
-style="left:561px; top:226px;"
+style="left:46.7%; top:18.8%;"
 onclick="mostrar(
 'Edwin Javier Duarte Dubon',
 '+34677298859',
@@ -248,7 +263,7 @@ onclick="mostrar(
 
 <!-- 6 -->
 <div class="marker"
-style="left:510px; top:178px;"
+style="left:42.5%; top:14.8%;"
 onclick="mostrar(
 'Daniel Núñez Licona',
 '+34653402116',
@@ -260,7 +275,7 @@ onclick="mostrar(
 
 <!-- 7 -->
 <div class="marker"
-style="left:383px; top:179px;"
+style="left:31.9%; top:14.9%;"
 onclick="mostrar(
 'Óscar Martínez',
 '+34607242802',
@@ -272,7 +287,7 @@ onclick="mostrar(
 
 <!-- 8 -->
 <div class="marker"
-style="left:303px; top:329px;"
+style="left:25.3%; top:27.4%;"
 onclick="mostrar(
 'Eric Garciolo',
 '+34648666312',
@@ -284,7 +299,7 @@ onclick="mostrar(
 
 <!-- 9 -->
 <div class="marker"
-style="left:385px; top:394px;"
+style="left:32.1%; top:32.8%;"
 onclick="mostrar(
 'Luis Sangoluisa',
 '+34646309923',
@@ -296,7 +311,7 @@ onclick="mostrar(
 
 <!-- 10 -->
 <div class="marker"
-style="left:486px; top:481px;"
+style="left:40.5%; top:40.1%;"
 onclick="mostrar(
 'Gumersindo Carrillo',
 '+34661142406',
@@ -308,7 +323,7 @@ onclick="mostrar(
 
 <!-- 11 -->
 <div class="marker"
-style="left:370px; top:310px;"
+style="left:30.8%; top:25.8%;"
 onclick="mostrar(
 'Isaac Navarro',
 '+34645507075',
@@ -320,7 +335,7 @@ onclick="mostrar(
 
 <!-- 12 -->
 <div class="marker"
-style="left:464px; top:389px;"
+style="left:38.7%; top:32.4%;"
 onclick="mostrar(
 'Aarón Cerrato',
 '+34617200204',
@@ -332,7 +347,7 @@ onclick="mostrar(
 
 <!-- 13 -->
 <div class="marker"
-style="left:539px; top:629px;"
+style="left:44.9%; top:52.4%;"
 onclick="mostrar(
 'Samuele Cammarata',
 '+34631517739',
@@ -344,7 +359,7 @@ onclick="mostrar(
 
 <!-- 14 -->
 <div class="marker"
-style="left:592px; top:581px;"
+style="left:49.3%; top:48.4%;"
 onclick="mostrar(
 'Gumersindo Carrillo',
 '+34661142406',
@@ -356,7 +371,7 @@ onclick="mostrar(
 
 <!-- 15 -->
 <div class="marker"
-style="left:649px; top:525px;"
+style="left:54.1%; top:43.8%;"
 onclick="mostrar(
 'Cristian Walpole',
 '+34640924943',
@@ -392,15 +407,19 @@ onclick="mostrar(
 
 </div>
 
-<a id="llamar" class="btn llamar">
+<a id="llamar"
+class="btn llamar">
 📞 Llamar
 </a>
 
-<a id="whatsapp" class="btn whatsapp" target="_blank">
+<a id="whatsapp"
+class="btn whatsapp"
+target="_blank">
 WhatsApp
 </a>
 
-<a id="emailBtn" class="btn email">
+<a id="emailBtn"
+class="btn email">
 ✉ Email
 </a>
 
