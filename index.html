@@ -15,7 +15,7 @@
 }
 
 body{
-    background:#f1f1f1;
+    background:#f2f2f2;
     font-family:Arial, Helvetica, sans-serif;
 }
 
@@ -26,18 +26,14 @@ body{
     padding:10px;
 }
 
-.plano-wrapper{
+.map-wrapper{
     position:relative;
-
     width:100%;
     max-width:1486px;
-
-    aspect-ratio:1486 / 1059;
 }
 
-.plano{
+.map-wrapper img{
     width:100%;
-    height:100%;
     display:block;
 }
 
@@ -46,8 +42,8 @@ body{
 .hotspot{
     position:absolute;
 
-    width:20px;
-    height:20px;
+    width:18px;
+    height:18px;
 
     border-radius:50%;
 
@@ -57,7 +53,7 @@ body{
 
     cursor:pointer;
 
-    z-index:10;
+    z-index:5;
 }
 
 /* MODAL */
@@ -70,16 +66,15 @@ body{
 
     background:rgba(0,0,0,0.6);
 
-    z-index:999;
-
     justify-content:center;
     align-items:center;
+
+    z-index:999;
 
     padding:20px;
 }
 
 .modal-content{
-
     background:white;
 
     width:100%;
@@ -95,7 +90,7 @@ body{
 .close{
     position:absolute;
     right:20px;
-    top:10px;
+    top:12px;
 
     font-size:42px;
     font-weight:bold;
@@ -104,25 +99,25 @@ body{
 }
 
 .modal h2{
-    color:#0d36b7;
+    color:#0b36b5;
     margin-bottom:20px;
-    font-size:38px;
+    font-size:36px;
 }
 
 .modal p{
     margin-bottom:14px;
-    font-size:26px;
+    font-size:24px;
 }
 
-.botones{
-    margin-top:25px;
-
+.buttons{
     display:flex;
     flex-direction:column;
     gap:14px;
+
+    margin-top:26px;
 }
 
-.botones a{
+.buttons a{
     text-decoration:none;
     color:white;
 
@@ -132,21 +127,13 @@ body{
 
     border-radius:14px;
 
-    font-size:28px;
+    font-size:26px;
     font-weight:bold;
 }
 
-.llamar{
-    background:#1877f2;
-}
-
-.whatsapp{
-    background:#25d366;
-}
-
-.email{
-    background:#ff6f00;
-}
+.call{background:#1877f2;}
+.whatsapp{background:#25d366;}
+.email{background:#ff6f00;}
 
 /* MOBILE */
 
@@ -165,7 +152,7 @@ body{
         font-size:17px;
     }
 
-    .botones a{
+    .buttons a{
         font-size:20px;
         padding:16px;
     }
@@ -178,41 +165,9 @@ body{
 
 <div class="container">
 
-<div class="plano-wrapper">
+<div class="map-wrapper" id="mapWrapper">
 
-<img src="plano.png" class="plano">
-
-<!-- HOTSPOTS -->
-
-<div class="hotspot" style="left:18.30%; top:37.11%;" onclick="openModal(1)"></div>
-
-<div class="hotspot" style="left:24.02%; top:45.23%;" onclick="openModal(2)"></div>
-
-<div class="hotspot" style="left:32.03%; top:56.00%;" onclick="openModal(3)"></div>
-
-<div class="hotspot" style="left:39.16%; top:48.25%;" onclick="openModal(4)"></div>
-
-<div class="hotspot" style="left:37.75%; top:21.34%;" onclick="openModal(5)"></div>
-
-<div class="hotspot" style="left:34.32%; top:16.81%;" onclick="openModal(6)"></div>
-
-<div class="hotspot" style="left:25.77%; top:16.90%;" onclick="openModal(7)"></div>
-
-<div class="hotspot" style="left:20.39%; top:31.06%;" onclick="openModal(8)"></div>
-
-<div class="hotspot" style="left:25.90%; top:37.20%;" onclick="openModal(9)"></div>
-
-<div class="hotspot" style="left:32.70%; top:45.42%;" onclick="openModal(10)"></div>
-
-<div class="hotspot" style="left:24.90%; top:29.27%;" onclick="openModal(11)"></div>
-
-<div class="hotspot" style="left:31.22%; top:36.73%;" onclick="openModal(12)"></div>
-
-<div class="hotspot" style="left:36.27%; top:59.40%;" onclick="openModal(13)"></div>
-
-<div class="hotspot" style="left:39.83%; top:54.86%;" onclick="openModal(14)"></div>
-
-<div class="hotspot" style="left:43.67%; top:49.58%;" onclick="openModal(15)"></div>
+<img src="plano.png">
 
 </div>
 </div>
@@ -235,9 +190,9 @@ body{
 
 <p><strong>Email:</strong> <span id="email"></span></p>
 
-<div class="botones">
+<div class="buttons">
 
-<a id="btnCall" class="llamar">📞 Llamar</a>
+<a id="btnCall" class="call">📞 Llamar</a>
 
 <a id="btnWhatsapp" class="whatsapp" target="_blank">WhatsApp</a>
 
@@ -249,6 +204,35 @@ body{
 </div>
 
 <script>
+
+/* TAMAÑO REAL PNG */
+
+const ORIGINAL_WIDTH = 1486;
+const ORIGINAL_HEIGHT = 1059;
+
+/* COORDENADAS EXACTAS */
+
+const puntos = {
+
+1:{x:272,y:393},
+2:{x:357,y:479},
+3:{x:476,y:593},
+4:{x:582,y:511},
+5:{x:561,y:226},
+6:{x:510,y:178},
+7:{x:383,y:179},
+8:{x:303,y:329},
+9:{x:385,y:394},
+10:{x:486,y:481},
+11:{x:370,y:310},
+12:{x:464,y:389},
+13:{x:539,y:629},
+14:{x:592,y:581},
+15:{x:649,y:525}
+
+};
+
+/* PERSONAS */
 
 const personas = {
 
@@ -374,6 +358,28 @@ email:"cristian@email.com"
 
 };
 
+const wrapper = document.getElementById("mapWrapper");
+
+/* CREAR HOTSPOTS */
+
+for(let id in puntos){
+
+    const p = puntos[id];
+
+    const hs = document.createElement("div");
+
+    hs.className = "hotspot";
+
+    hs.style.left = (p.x / ORIGINAL_WIDTH * 100) + "%";
+    hs.style.top = (p.y / ORIGINAL_HEIGHT * 100) + "%";
+
+    hs.onclick = () => openModal(id);
+
+    wrapper.appendChild(hs);
+}
+
+/* MODAL */
+
 function openModal(id){
 
 const p = personas[id];
@@ -384,7 +390,8 @@ document.getElementById("congregacion").innerText = p.congregacion;
 document.getElementById("telefono").innerText = p.telefono;
 document.getElementById("email").innerText = p.email;
 
-document.getElementById("btnCall").href = "tel:" + p.telefono;
+document.getElementById("btnCall").href =
+"tel:" + p.telefono;
 
 document.getElementById("btnWhatsapp").href =
 "https://wa.me/" + p.telefono.replace("+","");
@@ -400,7 +407,7 @@ document.getElementById("modal").style.display = "none";
 }
 
 window.onclick = function(e){
-if(e.target.id === "modal"){
+if(e.target.id==="modal"){
 closeModal();
 }
 }
