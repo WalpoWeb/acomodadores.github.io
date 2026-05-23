@@ -28,7 +28,9 @@ body{
     display:block;
 }
 
-/* HOTSPOTS */
+/* =========================
+   HOTSPOTS
+========================= */
 
 .hotspot{
     position:absolute;
@@ -41,7 +43,9 @@ body{
     z-index:20;
 }
 
-/* POPUP */
+/* =========================
+   POPUP
+========================= */
 
 #popup{
     position:fixed;
@@ -104,6 +108,10 @@ body{
     background:#ff6d00;
 }
 
+/* =========================
+   MOBILE
+========================= */
+
 @media(max-width:768px){
 
     #popup{
@@ -145,6 +153,10 @@ body{
 
 </div>
 
+<!-- =========================
+     POPUP
+========================= -->
+
 <div id="popup">
 
     <div class="close-btn" onclick="closePopup()">✖</div>
@@ -156,7 +168,9 @@ body{
     <p><strong>Teléfono:</strong> <span id="popup-phone"></span></p>
     <p><strong>Email:</strong> <span id="popup-email"></span></p>
 
-    <a id="call-btn" class="action-btn call-btn">📞 Llamar</a>
+    <a id="call-btn" class="action-btn call-btn">
+        📞 Llamar
+    </a>
 
     <a id="wa-btn" class="action-btn whatsapp-btn" target="_blank">
         WhatsApp
@@ -170,49 +184,228 @@ body{
 
 <script>
 
-const hotspots = {};
-
-const mapContainer = document.getElementById("map-container");
-
 /* =========================
-   CAPTURAR COORDENADAS
+   PERSONAS
 ========================= */
 
-mapContainer.addEventListener("click", function(e){
+const personas = {
 
-    const rect = mapContainer.getBoundingClientRect();
+1:{
+    nombre:"David Robles",
+    rol:"ECC",
+    congregacion:"Barcelona",
+    telefono:"+34600000001",
+    email:"david@gmail.com"
+},
 
-    const x = Math.round(
-        ((e.clientX - rect.left) / rect.width) * 1486
-    );
+2:{
+    nombre:"Kevin Aguilera",
+    rol:"ECC",
+    congregacion:"Barcelona",
+    telefono:"+34600000002",
+    email:"kevin@gmail.com"
+},
 
-    const y = Math.round(
-        ((e.clientY - rect.top) / rect.height) * 1059
-    );
+3:{
+    nombre:"Valeri Saakyan",
+    rol:"ECC",
+    congregacion:"Barcelona",
+    telefono:"+34600000003",
+    email:"valeri@gmail.com"
+},
 
-    console.log(`X: ${x}  Y: ${y}`);
+4:{
+    nombre:"Toni Tamargo",
+    rol:"ECC",
+    congregacion:"Barcelona",
+    telefono:"+34600000004",
+    email:"toni@gmail.com"
+},
 
-    // círculo visual temporal
+5:{
+    nombre:"Edwin Javier Duarte Dubon",
+    rol:"ECC",
+    congregacion:"Via Julia",
+    telefono:"+34677298859",
+    email:"javierduarte.1981@gmail.com"
+},
+
+6:{
+    nombre:"Daniel Núñez Licona",
+    rol:"ECC",
+    congregacion:"Barcelona",
+    telefono:"+34600000006",
+    email:"daniel@gmail.com"
+},
+
+7:{
+    nombre:"Óscar Martínez",
+    rol:"ECC",
+    congregacion:"Barcelona",
+    telefono:"+34600000007",
+    email:"oscar@gmail.com"
+},
+
+8:{
+    nombre:"Eric Garciolo",
+    rol:"Acomodador",
+    congregacion:"Barcelona",
+    telefono:"+34600000008",
+    email:"eric@gmail.com"
+},
+
+9:{
+    nombre:"Luis Sangoluisa",
+    rol:"Acomodador",
+    congregacion:"Barcelona",
+    telefono:"+34600000009",
+    email:"luis@gmail.com"
+},
+
+10:{
+    nombre:"Gumersindo Carrillo",
+    rol:"Acomodador",
+    congregacion:"Porta",
+    telefono:"+34661142406",
+    email:"camba7119@hotmail.com"
+},
+
+11:{
+    nombre:"Isaac Navarro",
+    rol:"Acomodador",
+    congregacion:"Barcelona",
+    telefono:"+34600000011",
+    email:"isaac@gmail.com"
+},
+
+12:{
+    nombre:"Aarón Cerrato",
+    rol:"Acomodador",
+    congregacion:"Barcelona",
+    telefono:"+34600000012",
+    email:"aaron@gmail.com"
+},
+
+13:{
+    nombre:"Samuele Cammarata",
+    rol:"Responsable",
+    congregacion:"Barcelona",
+    telefono:"+34600000013",
+    email:"samuele@gmail.com"
+},
+
+14:{
+    nombre:"Gumersindo Carrillo",
+    rol:"Responsable",
+    congregacion:"Porta",
+    telefono:"+34661142406",
+    email:"camba7119@hotmail.com"
+},
+
+15:{
+    nombre:"Cristian Walpole",
+    rol:"Responsable",
+    congregacion:"Barcelona",
+    telefono:"+34600000015",
+    email:"cristian@gmail.com"
+}
+
+};
+
+/* =========================
+   HOTSPOTS
+========================= */
+
+const hotspots = {
+
+1:  { x:335, y:485 },
+2:  { x:443, y:593 },
+3:  { x:587, y:735 },
+4:  { x:719, y:633 },
+
+5:  { x:695, y:279 },
+6:  { x:632, y:221 },
+7:  { x:471, y:221 },
+
+8:  { x:371, y:408 },
+9:  { x:476, y:490 },
+10: { x:599, y:596 },
+
+11: { x:459, y:382 },
+12: { x:584, y:492 },
+
+13: { x:668, y:782 },
+14: { x:732, y:721 },
+15: { x:807, y:652 }
+
+};
+
+/* =========================
+   CREAR HOTSPOTS
+========================= */
+
+const mapContainer =
+    document.getElementById("map-container");
+
+Object.entries(hotspots).forEach(([id, pos]) => {
+
     const point = document.createElement("div");
 
-    point.style.position = "absolute";
-    point.style.width = "16px";
-    point.style.height = "16px";
-    point.style.borderRadius = "50%";
-    point.style.background = "red";
-    point.style.opacity = "0.7";
-    point.style.pointerEvents = "none";
-    point.style.transform = "translate(-50%, -50%)";
+    point.className = "hotspot";
 
     point.style.left =
-        ((x / 1486) * 100) + "%";
+        (pos.x / 1486 * 100) + "%";
 
     point.style.top =
-        ((y / 1059) * 100) + "%";
+        (pos.y / 1059 * 100) + "%";
+
+    point.onclick = () => openPopup(id);
 
     mapContainer.appendChild(point);
-
 });
+
+/* =========================
+   POPUP
+========================= */
+
+function openPopup(id){
+
+    const p = personas[id];
+
+    document.getElementById("popup-name").innerText =
+        p.nombre;
+
+    document.getElementById("popup-role").innerText =
+        p.rol;
+
+    document.getElementById("popup-cong").innerText =
+        p.congregacion;
+
+    document.getElementById("popup-phone").innerText =
+        p.telefono;
+
+    document.getElementById("popup-email").innerText =
+        p.email;
+
+    document.getElementById("call-btn").href =
+        "tel:" + p.telefono;
+
+    document.getElementById("wa-btn").href =
+        "https://wa.me/" +
+        p.telefono.replace("+","");
+
+    document.getElementById("mail-btn").href =
+        "mailto:" + p.email;
+
+    document.getElementById("popup").style.display =
+        "block";
+}
+
+function closePopup(){
+
+    document.getElementById("popup").style.display =
+        "none";
+}
 
 </script>
 
