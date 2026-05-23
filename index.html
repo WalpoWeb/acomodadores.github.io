@@ -29,15 +29,15 @@ body{
 }
 
 /* =========================
-   HOTSPOTS
+   HOTSPOTS INVISIBLES
 ========================= */
 
 .hotspot{
     position:absolute;
-    width:22px;
-    height:22px;
+    width:50px;
+    height:50px;
     border-radius:50%;
-    background:rgba(255,0,0,0.35);
+    background:transparent;
     transform:translate(-50%, -50%);
     cursor:pointer;
     z-index:20;
@@ -137,8 +137,8 @@ body{
     }
 
     .hotspot{
-        width:18px;
-        height:18px;
+        width:40px;
+        height:40px;
     }
 }
 
@@ -194,39 +194,39 @@ const personas = {
     nombre:"David Robles",
     rol:"ECC",
     congregacion:"Barcelona",
-    telefono:"+34600000001",
-    email:"david@gmail.com"
+    telefono:"608049585",
+    email:"dra-70@hotmail.es"
 },
 
 2:{
     nombre:"Kevin Aguilera",
     rol:"ECC",
     congregacion:"Barcelona",
-    telefono:"+34600000002",
-    email:"kevin@gmail.com"
+    telefono:"662228389",
+    email:"k_a_r@hotmail.es"
 },
 
 3:{
     nombre:"Valeri Saakyan",
     rol:"ECC",
     congregacion:"Barcelona",
-    telefono:"+34600000003",
-    email:"valeri@gmail.com"
+    telefono:"619589406",
+    email:"valeriimarta@gmail.com"
 },
 
 4:{
     nombre:"Toni Tamargo",
     rol:"ECC",
     congregacion:"Barcelona",
-    telefono:"+34600000004",
-    email:"toni@gmail.com"
+    telefono:"655473380",
+    email:"ynot51t@gmail.com"
 },
 
 5:{
     nombre:"Edwin Javier Duarte Dubon",
     rol:"ECC",
     congregacion:"Via Julia",
-    telefono:"+34677298859",
+    telefono:"677298859",
     email:"javierduarte.1981@gmail.com"
 },
 
@@ -234,39 +234,39 @@ const personas = {
     nombre:"Daniel Núñez Licona",
     rol:"ECC",
     congregacion:"Barcelona",
-    telefono:"+34600000006",
-    email:"daniel@gmail.com"
+    telefono:"653402116",
+    email:"gdnl7.dn@gmail.com"
 },
 
 7:{
     nombre:"Óscar Martínez",
     rol:"ECC",
     congregacion:"Barcelona",
-    telefono:"+34600000007",
-    email:"oscar@gmail.com"
+    telefono:"607242802",
+    email:"omartinez013@gmail.com"
 },
 
 8:{
     nombre:"Eric Garciolo",
     rol:"Acomodador",
     congregacion:"Barcelona",
-    telefono:"+34600000008",
-    email:"eric@gmail.com"
+    telefono:"648666312",
+    email:"ericgarciolo@gmail.com"
 },
 
 9:{
     nombre:"Luis Sangoluisa",
     rol:"Acomodador",
     congregacion:"Barcelona",
-    telefono:"+34600000009",
-    email:"luis@gmail.com"
+    telefono:"646309923",
+    email:"luissangoluisa10@gmail.com"
 },
 
 10:{
     nombre:"Gumersindo Carrillo",
     rol:"Acomodador",
     congregacion:"Porta",
-    telefono:"+34661142406",
+    telefono:"661142406",
     email:"camba7119@hotmail.com"
 },
 
@@ -274,31 +274,31 @@ const personas = {
     nombre:"Isaac Navarro",
     rol:"Acomodador",
     congregacion:"Barcelona",
-    telefono:"+34600000011",
-    email:"isaac@gmail.com"
+    telefono:"645507075",
+    email:"inavarro@gmail.com"
 },
 
 12:{
     nombre:"Aarón Cerrato",
     rol:"Acomodador",
     congregacion:"Barcelona",
-    telefono:"+34600000012",
-    email:"aaron@gmail.com"
+    telefono:"617200204",
+    email:"aaroncerratojw@gmail.com"
 },
 
 13:{
     nombre:"Samuele Cammarata",
     rol:"Responsable",
     congregacion:"Barcelona",
-    telefono:"+34600000013",
-    email:"samuele@gmail.com"
+    telefono:"631511739",
+    email:"samuelecammarata@gmail.com"
 },
 
 14:{
     nombre:"Gumersindo Carrillo",
     rol:"Responsable",
     congregacion:"Porta",
-    telefono:"+34661142406",
+    telefono:"661142406",
     email:"camba7119@hotmail.com"
 },
 
@@ -306,8 +306,8 @@ const personas = {
     nombre:"Cristian Walpole",
     rol:"Responsable",
     congregacion:"Barcelona",
-    telefono:"+34600000015",
-    email:"cristian@gmail.com"
+    telefono:"640924943",
+    email:"cristianwal@hotmail.com"
 }
 
 };
@@ -388,11 +388,10 @@ function openPopup(id){
         p.email;
 
     document.getElementById("call-btn").href =
-        "tel:" + p.telefono;
+        "tel:+34" + p.telefono;
 
     document.getElementById("wa-btn").href =
-        "https://wa.me/" +
-        p.telefono.replace("+","");
+        "https://wa.me/34" + p.telefono;
 
     document.getElementById("mail-btn").href =
         "mailto:" + p.email;
